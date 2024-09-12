@@ -87,7 +87,6 @@ namespace Calculator
                 double firstNumber = double.Parse(currentNumber);
                 double secondNumber = double.Parse(resultTextView.Text);
                 double result = 0;
-
                 switch (currentOperator)
                 {
                     case "+":
@@ -101,17 +100,24 @@ namespace Calculator
                         break;
                     case "/":
                         if (secondNumber != 0)
+                        {
                             result = firstNumber / secondNumber;
+                        }
                         else
-                            resultTextView.Text = "0";
-                        return;
+                        {
+                            resultTextView.Text = "Error: Divide by zero";
+                            currentNumber = "";
+                            currentOperator = "";
+                            return;
+                        }
+                        break;
                 }
-
                 resultTextView.Text = result.ToString();
                 currentNumber = "";
                 currentOperator = "";
             }
         }
+
         private void DecimalButton_Click(object sender, System.EventArgs e)
         {
             // Placeholder for decimal button click logic
